@@ -4,3 +4,35 @@ on:
   push:
     branches:
       - main
+
+jobs:
+  first-task:
+    #Use ubuntu in order to run faster on Linux
+    runs-on: ubuntu-latest
+    
+    # permision to read and upoad
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      # 1
+      - name: Check out the repository code
+        uses: actions/checkout@v3
+
+      # 2
+      - name: Authenticate securely against the GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3,4 
+      - name: Build, tag and push to GHCR
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+	  # username turned to lowercase for docker
+          tags: ghcr.io/stylianipanopoulou/seip-assignment-1:latest
