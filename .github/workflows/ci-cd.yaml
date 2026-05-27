@@ -1,0 +1,6 @@
+name: Action
+
+on:
+  push:
+    branches:
+      - main
