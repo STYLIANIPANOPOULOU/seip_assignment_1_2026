@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+# Force Node 24 to avoid warnings
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   first-task:
     #Use ubuntu in order to run faster on Linux
