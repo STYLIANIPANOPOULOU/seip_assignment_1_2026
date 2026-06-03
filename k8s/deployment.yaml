@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seip-assignment-1-deployment
+spec:
+  # 3 replicas
+  replicas: 3
+  selector:
+    matchLabels:
+      app: seip-assignment-1
+  template:
+    metadata:
+      labels:
+        app: seip-assignment-1
+    spec:
+      containers:
+        - name: seip-assignment-1-container
+          image: ghcr.io/stylianipanopoulou/seip-assignment-1:latest
+          ports:
+            - containerPort: 3000
+          
+          # values from ConfigMap and Secret
+          env:
+            - name: WELCOME_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: seip-assignment-1-config
+                  key: WELCOME_MESSAGE
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: seip-assignment-1-config
+                  key: NODE_ENV
+            - name: API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: seip-assignment-1-secret
+                  key: API_SECRET_KEY
+
+          # CPU and RAM boundaries
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+
+          # Health checks
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10

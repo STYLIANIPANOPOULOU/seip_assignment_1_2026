@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+   name: seip-assignment-1-config
+data:
+  WELCOME_MESSAGE: "Welcome to the Software Engineering in Practice Assignment!"
+  NODE_ENV: "production"
