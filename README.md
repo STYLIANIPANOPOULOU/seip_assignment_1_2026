@@ -13,9 +13,10 @@ Prerequisites needed for the project:
 
 How to run it with commands
 
-1. Clone the repo in command line
+1. Clone the repo and get into the file
 
 git clone https://github.com/STYLIANIPANOPOULOU/seip_assignment_1_2026.git
+cd seip_assignment_1_2026
 
 
 2. Start Minikube
@@ -39,6 +40,8 @@ kubectl port-forward service/seip-assignment-1-service 8080:80
 
 Endpoints:
 
-http://localhost:8080/               Greeting from ConfigMaphttp
-http:localhost:8080/health           Health check
-http://localhost:8080/secure-config  Auth status + masked secret
+http://localhost:8080/ : Greeting from ConfigMap
+
+http://localhost:8080/health : Health check
+
+http://localhost:8080/secure-config : Auth status + masked secret
