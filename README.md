@@ -1,5 +1,7 @@
 SEIP Assignment 1: Cloud-Native DevOps Pipeline
 
+**Note for Evaluation: The complete Report file located in the root of this repository. Please download the PDF to review the final deliverables.
+
 A Node.js Express API containerized with Docker and deployed on a local Kubernetes cluster (Minikube). The CI/CD pipeline runs automatically via GitHub Actions and pushes the image to GHCR on every push to main.
 
 Prerequisites needed for the project: 
